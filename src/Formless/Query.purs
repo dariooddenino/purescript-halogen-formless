@@ -60,9 +60,7 @@ submitReply :: ∀ pq cq cs form m. Query pq cq cs form m (Maybe (form Record Ou
 submitReply = H.request SubmitReply
 
 -- | Imperatively receive the current state of the form.
-getState
-	:: ∀ pq cq cs form m
-	 . Query pq cq cs form m (PublicState form)
+getState :: ∀ pq cq cs form m. Query pq cq cs form m (PublicState form)
 getState = H.request GetState
 
 -- | Replace all form inputs with a new set of inputs, and re-initialize
@@ -71,7 +69,7 @@ getState = H.request GetState
 initialize
   :: ∀ pq cq cs form m a
    . form Record InputField
-	-> a
+        -> a
   -> Query pq cq cs form m a
 initialize = Initialize
 
@@ -89,7 +87,7 @@ initialize_ = flip Initialize unit
 -- | field should also modify another field.
 andThen
   :: ∀ pq cq cs form m a
-	 . Query pq cq cs form m Unit
+         . Query pq cq cs form m Unit
   -> Query pq cq cs form m Unit
   -> a
   -> Query pq cq cs form m a
@@ -99,7 +97,7 @@ andThen = AndThen
 -- | result. Use to skip a use of `Halogen.action`.
 andThen_
   :: ∀ pq cq cs form m
-	 . Query pq cq cs form m Unit
+         . Query pq cq cs form m Unit
   -> Query pq cq cs form m Unit
   -> Query pq cq cs form m Unit
 andThen_ a b = AndThen a b unit
@@ -109,7 +107,7 @@ andThen_ a b = AndThen a b unit
 -- | will then pass it up to your parent component via the `Emit` message.
 raise
   :: ∀ pq cq cs form m a
-	 . pq Unit
+         . pq Unit
   -> a
   -> Query pq cq cs form m a
 raise = Raise
@@ -118,7 +116,7 @@ raise = Raise
 -- | result. Use to skip a use of `Halogen.action`.
 raise_
   :: ∀ pq cq cs form m
-	 . pq Unit
+         . pq Unit
   -> Query pq cq cs form m Unit
 raise_ = flip Raise unit
 
@@ -278,7 +276,7 @@ setAll
    . Newtype (form Record InputField) { | is' }
   => HM.HMap WrapField { | is } { | is' }
   => { | is }
-	-> a
+        -> a
   -> Query pq cq cs form m a
 setAll = SetAll <<< wrapInputFields
 
@@ -299,7 +297,7 @@ modifyAll
    . Newtype (form Record InputFunction) { | ifs' }
   => HM.HMap WrapField { | ifs } { | ifs' }
   => { | ifs }
-	-> a
+        -> a
   -> Query pq cq cs form m a
 modifyAll = ModifyAll <<< wrapInputFunctions
 
@@ -317,7 +315,7 @@ modifyAll_ ifs = ModifyAll (wrapInputFunctions ifs) unit
 -- | to its initial pristine state, no touched fields.
 resetAll
   :: ∀ pq cq cs form m a
-	 . a
+         . a
   -> Query pq cq cs form m a
 resetAll = ResetAll
 
@@ -331,7 +329,7 @@ resetAll_ = ResetAll unit
 -- | Validate all fields in the form, collecting errors
 validateAll
   :: ∀ pq cq cs form m a
-	 . a
+         . a
   -> Query pq cq cs form m a
 validateAll = ValidateAll
 
@@ -351,7 +349,7 @@ setValidateAll
    . Newtype (form Record InputField) { | is' }
   => HM.HMap WrapField { | is } { | is' }
   => { | is }
-	-> a
+        -> a
   -> Query pq cq cs form m a
 setValidateAll is = setAll_ is `andThen` validateAll_
 
@@ -373,7 +371,7 @@ modifyValidateAll
    . Newtype (form Record InputFunction) { | ifs' }
   => HM.HMap WrapField { | ifs } { | ifs' }
   => { | ifs }
-	-> a
+        -> a
   -> Query pq cq cs form m a
 modifyValidateAll ifs = modifyAll_ ifs `andThen` validateAll_
 

@@ -56,9 +56,7 @@ submit_ = Submit unit
 -- | Imperatively submit the form and collect the result of submission, without
 -- | triggering a `Submitted` message. Useful when you need to submit multiple
 -- | forms together without listening to submission events.
-submitReply
-	:: ∀ pq cq cs form m
-	 . Query pq cq cs form m (Maybe (form Record OutputField))
+submitReply :: ∀ pq cq cs form m. Query pq cq cs form m (Maybe (form Record OutputField))
 submitReply = H.request SubmitReply
 
 -- | Imperatively receive the current state of the form.

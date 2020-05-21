@@ -59,6 +59,7 @@ submit_ = Submit unit
 submitReply :: ∀ pq cq cs form m. Query pq cq cs form m (Maybe (form Record OutputField))
 submitReply = H.request SubmitReply
 
+
 -- | Imperatively receive the current state of the form.
 getState :: ∀ pq cq cs form m. Query pq cq cs form m (PublicState form)
 getState = H.request GetState

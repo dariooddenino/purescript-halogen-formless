@@ -42,7 +42,7 @@ send' path p q = Send (injSlot path p) (injQuery path q)
 -- | form validates successfully.
 submit
   :: ∀ pq cq cs form m a
-	 . a
+   . a
   -> Query pq cq cs form m a
 submit = Submit
 

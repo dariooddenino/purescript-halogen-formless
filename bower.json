@@ -26,7 +26,6 @@
     "purescript-generics-rep": "^6.1.0"
   },
   "devDependencies": {
-    "purescript-halogen-storybook": "^0.4.0",
     "purescript-debug": "^4.0.0",
     "purescript-test-unit": "^14.0.0",
     "purescript-read": "^1.0.1",

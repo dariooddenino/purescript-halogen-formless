@@ -10,7 +10,8 @@ import Formless.Transform.Internal (class Row1Cons, FromScratch, fromScratch)
 import Prim.Row as Row
 import Prim.RowList as RL
 import Record.Builder as Builder
-import Type.Row (RLProxy(..), RProxy(..))
+import Type.RowList (RLProxy(..))
+import Type.Row (RProxy(..))
 
 ----------
 -- Construction from rows
